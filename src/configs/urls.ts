@@ -11,5 +11,11 @@ export const urls = {
 		create: '/categories/create',
 		edit: (id: string) => `/categories/edit/${id}`,
 	},
+	customers: {
+		list: '/customers',
+		create: '/customers/create',
+		edit: (id: string) => `/customers/edit/${id}`,
+		detail: (id: string) => `/customers/detail/${id}`,
+	},
 	orders: '/orders',
 };

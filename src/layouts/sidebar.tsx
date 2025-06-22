@@ -1,4 +1,4 @@
-import { Bookmark, CreditCard, GraduationCap, Home } from 'lucide-react';
+import { Bookmark, CreditCard, GraduationCap, Home, Users } from 'lucide-react';
 import { Link, useLocation, type To } from 'react-router-dom';
 
 import { urls } from '@/configs/urls';
@@ -18,7 +18,13 @@ const Sidebar = () => {
 			icon: <GraduationCap />,
 			title: 'Categories',
 		},
-		{ id: 4, path: urls.orders, icon: <CreditCard />, title: 'Orders' },
+		{
+			id: 4,
+			path: urls.customers.list,
+			icon: <Users />,
+			title: 'Customers',
+		},
+		{ id: 5, path: urls.orders, icon: <CreditCard />, title: 'Orders' },
 	];
 
 	return (
