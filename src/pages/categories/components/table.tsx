@@ -1,4 +1,16 @@
 import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { PencilIcon, TrashIcon } from 'lucide-react';
+import {
 	Table,
 	TableBody,
 	TableCell,
@@ -9,8 +21,9 @@ import {
 
 import { Button } from '@/components/ui/button';
 import type { Category } from '@/types/category.type';
-import { PencilIcon } from 'lucide-react';
+import { useDeleteCategory } from '@/hooks/categories/useCategory';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 interface TableCategoryProps {
 	categories: Category[];
@@ -18,9 +31,20 @@ interface TableCategoryProps {
 
 export const TableCategory = ({ categories }: TableCategoryProps) => {
 	const navigate = useNavigate();
+	const { mutate: deleteCategory, isPending: isDeleting } = useDeleteCategory();
+	const [deletingId, setDeletingId] = useState<string | null>(null);
 
 	const handleEditCategory = (categoryId: string) => {
 		navigate(`/categories/edit/${categoryId}`);
+	};
+
+	const handleDeleteCategory = (categoryId: string) => {
+		setDeletingId(categoryId);
+		deleteCategory(categoryId, {
+			onSettled: () => {
+				setDeletingId(null);
+			},
+		});
 	};
 
 	return (
@@ -34,6 +58,7 @@ export const TableCategory = ({ categories }: TableCategoryProps) => {
 						<TableHead>Trạng thái</TableHead>
 						<TableHead>Ngày tạo</TableHead>
 						<TableHead>Cập nhật</TableHead>
+						<TableHead className="text-right">Thao tác</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
@@ -67,14 +92,51 @@ export const TableCategory = ({ categories }: TableCategoryProps) => {
 							<TableCell className="text-sm text-gray-600">
 								{new Date(category.updatedAt).toLocaleDateString('vi-VN')}
 							</TableCell>
-							<TableCell className="text-sm text-gray-600">
-								<Button
-									variant="outline"
-									size="sm"
-									onClick={() => handleEditCategory(category.id)}
-								>
-									<PencilIcon className="w-4 h-4" />
-								</Button>
+							<TableCell className="text-right">
+								<div className="flex items-center justify-end gap-2">
+									<Button
+										variant="outline"
+										size="sm"
+										onClick={() => handleEditCategory(category.id)}
+									>
+										<PencilIcon className="w-4 h-4" />
+									</Button>
+									<AlertDialog>
+										<AlertDialogTrigger asChild>
+											<Button
+												variant="outline"
+												size="sm"
+												className="text-red-600 hover:text-red-700 hover:bg-red-50"
+											>
+												<TrashIcon className="w-4 h-4" />
+											</Button>
+										</AlertDialogTrigger>
+										<AlertDialogContent>
+											<AlertDialogHeader>
+												<AlertDialogTitle>
+													Xác nhận xóa danh mục
+												</AlertDialogTitle>
+												<AlertDialogDescription>
+													Bạn có chắc chắn muốn xóa danh mục "
+													{category.categoryName}"? Hành động này không thể hoàn
+													tác.
+												</AlertDialogDescription>
+											</AlertDialogHeader>
+											<AlertDialogFooter>
+												<AlertDialogCancel>Hủy</AlertDialogCancel>
+												<AlertDialogAction
+													onClick={() => handleDeleteCategory(category.id)}
+													disabled={isDeleting && deletingId === category.id}
+													className="bg-red-600 hover:bg-red-700"
+												>
+													{isDeleting && deletingId === category.id
+														? 'Đang xóa...'
+														: 'Xóa'}
+												</AlertDialogAction>
+											</AlertDialogFooter>
+										</AlertDialogContent>
+									</AlertDialog>
+								</div>
 							</TableCell>
 						</TableRow>
 					))}

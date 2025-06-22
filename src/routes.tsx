@@ -1,4 +1,5 @@
 import CategoriesPage from './pages/categories/page';
+import CreateCategoryPage from './pages/categories/create/page';
 import CreateProductPage from './pages/products/create/page';
 import EditCategoryPage from './pages/categories/edit/[categoryId]/page';
 import HomePage from './pages/home/page';
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
 			{
 				path: 'categories',
 				element: <CategoriesPage />,
+			},
+			{
+				path: 'categories/create',
+				element: <CreateCategoryPage />,
 			},
 			{
 				path: 'categories/edit/:categoryId',

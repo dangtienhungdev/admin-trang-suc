@@ -134,18 +134,29 @@ const EditCategoryPage = () => {
 						)}
 					/>
 
-					<Button
-						type="submit"
-						disabled={editCategoryMutation.isPending}
-						className="w-full h-14 flex items-center justify-center"
-					>
-						{editCategoryMutation.isPending && (
-							<Loader className="animate-spin mr-2" />
-						)}
-						{editCategoryMutation.isPending
-							? 'Đang cập nhật...'
-							: 'Cập nhật danh mục'}
-					</Button>
+					<div className="flex gap-4 pt-4">
+						<Button
+							type="button"
+							variant="outline"
+							onClick={() => navigate('/categories')}
+							className="flex-1 h-14"
+							disabled={editCategoryMutation.isPending}
+						>
+							Hủy
+						</Button>
+						<Button
+							type="submit"
+							disabled={editCategoryMutation.isPending}
+							className="flex-1 h-14 flex items-center justify-center"
+						>
+							{editCategoryMutation.isPending && (
+								<Loader className="animate-spin mr-2" />
+							)}
+							{editCategoryMutation.isPending
+								? 'Đang cập nhật...'
+								: 'Cập nhật danh mục'}
+						</Button>
+					</div>
 				</form>
 			</Form>
 		</div>

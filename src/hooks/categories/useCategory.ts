@@ -1,6 +1,8 @@
 import { categoriesApi, type GetCategoriesParams } from '@/apis/categories.api';
-import { useQuery } from '@tanstack/react-query';
+import type { Category } from '@/types/category.type';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export const useCategories = (params?: GetCategoriesParams) => {
 	const result = useQuery({
@@ -33,4 +35,45 @@ export const useCategory = () => {
 		...result,
 		category,
 	};
+};
+
+export const useCreateCategory = () => {
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationFn: (category: Partial<Category>) =>
+			categoriesApi.createCategory(category),
+		onSuccess: () => {
+			// Refetch categories list
+			queryClient.invalidateQueries({
+				queryKey: [categoriesApi.getCategories.name],
+			});
+			toast.success('Tạo danh mục thành công!');
+		},
+		onError: (error: any) => {
+			const errorMessage =
+				error?.response?.data?.message || 'Có lỗi xảy ra khi tạo danh mục';
+			toast.error(errorMessage);
+		},
+	});
+};
+
+export const useDeleteCategory = () => {
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationFn: (id: string) => categoriesApi.deleteCategory(id),
+		onSuccess: () => {
+			// Refetch categories list
+			queryClient.invalidateQueries({
+				queryKey: [categoriesApi.getCategories.name],
+			});
+			toast.success('Xóa danh mục thành công!');
+		},
+		onError: (error: any) => {
+			const errorMessage =
+				error?.response?.data?.message || 'Có lỗi xảy ra khi xóa danh mục';
+			toast.error(errorMessage);
+		},
+	});
 };

@@ -78,9 +78,14 @@ export default function CategoriesPage() {
 						<h2 className="text-lg font-medium text-gray-900">
 							Danh mục ({pagination?.total || 0})
 						</h2>
-						{isFetching && (
-							<div className="text-sm text-blue-600">Đang tải...</div>
-						)}
+						<div className="flex items-center gap-4">
+							{isFetching && (
+								<div className="text-sm text-blue-600">Đang tải...</div>
+							)}
+							<Button onClick={() => navigate('/categories/create')}>
+								Thêm mới danh mục
+							</Button>
+						</div>
 					</div>
 				</div>
 

@@ -51,7 +51,7 @@ const Sidebar = () => {
 							key={menuItem.id}
 							className={cn(
 								'flex items-center gap-3  py-3 px-6',
-								{ 'text-[#B87A1F] bg-[#FFF7E6]': menuItem.path === pathName },
+								{ 'text-white bg-[#B87A1F]': menuItem.path === pathName },
 								{ 'hover:bg-gray-200': menuItem.path !== pathName }
 							)}
 						>
