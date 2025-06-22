@@ -9,12 +9,14 @@ import {
 import { Link, useLocation, type To } from 'react-router-dom';
 
 import { urls } from '@/configs/urls';
+import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
 const Sidebar = () => {
 	// useLocation
 	const location = useLocation();
 	const pathName = location.pathname;
+	const { admin } = useAuth();
 
 	const menus = [
 		{ id: 1, path: urls.home, icon: <Home />, title: 'Dashboard' },
@@ -44,21 +46,21 @@ const Sidebar = () => {
 		<div className="w-64 bg-[#F2EAE1]">
 			{/* title */}
 			<div className="p-6 border-l-4 border-l-[#B87A1F]">
-				<h1 className="font-bold text-xl uppercase">Logo Admin</h1>
+				<h1 className="font-bold text-xl uppercase">Jewelry Admin</h1>
 			</div>
 
 			{/* profile */}
 			<div className="mt-8 flex flex-col items-center">
-				<div className="w-32 mb-4 h-32 rounded-full overflow-hidden">
-					<img
-						src="https://picsum.photos/536/354"
-						alt=""
-						className="h-full w-full object-cover"
-					/>
+				<div className="w-32 mb-4 h-32 rounded-full overflow-hidden bg-[#B87A1F] flex items-center justify-center">
+					<div className="text-white text-4xl font-bold">
+						{admin?.username?.charAt(0).toUpperCase() || 'A'}
+					</div>
 				</div>
 
-				<h2 className="text-lg font-semibold">ABC</h2>
-				<p className="text-[#FEAF00] text-sm">Admin</p>
+				<h2 className="text-lg font-semibold">{admin?.username || 'Admin'}</h2>
+				<p className="text-[#FEAF00] text-sm">
+					{admin?.role === 'SuperAdmin' ? 'Super Admin' : 'Staff'}
+				</p>
 			</div>
 
 			{/* menu */}

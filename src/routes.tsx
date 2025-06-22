@@ -13,12 +13,17 @@ import EditCategoryPage from './pages/categories/edit/[categoryId]/page';
 import EditCustomerPage from './pages/manager/customers/edit/[customerId]/page';
 import EditProductPage from './pages/products/edit/[productId]/page';
 import HomePage from './pages/home/page';
+import LoginPage from './pages/login/page';
 import ProductDetailPage from './pages/products/detail/[productId]/page';
 import ProductsPage from './pages/products/page';
 import RootLayout from './layouts/root-layout';
 import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
+	{
+		path: '/login',
+		element: <LoginPage />,
+	},
 	{
 		path: '/',
 		element: <RootLayout />,
