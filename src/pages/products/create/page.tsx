@@ -347,16 +347,29 @@ const CreateProductPage = () => {
 							)}
 						/>
 					</div>
-					<Button
-						type="submit"
-						disabled={createProductMutation.isPending}
-						className="w-full h-14 flex items-center justify-center"
-					>
-						{createProductMutation.isPending && (
-							<Loader className="animate-spin mr-2" />
-						)}
-						{createProductMutation.isPending ? 'Đang thêm...' : 'Thêm sản phẩm'}
-					</Button>
+					<div className="flex gap-4 pt-4">
+						<Button
+							type="button"
+							variant="outline"
+							onClick={() => navigate('/products')}
+							className="flex-1 h-14"
+							disabled={createProductMutation.isPending}
+						>
+							Hủy
+						</Button>
+						<Button
+							type="submit"
+							disabled={createProductMutation.isPending}
+							className="flex-1 h-14 flex items-center justify-center"
+						>
+							{createProductMutation.isPending && (
+								<Loader className="animate-spin mr-2 h-4 w-4" />
+							)}
+							{createProductMutation.isPending
+								? 'Đang thêm...'
+								: 'Thêm sản phẩm'}
+						</Button>
+					</div>
 				</form>
 			</Form>
 		</div>

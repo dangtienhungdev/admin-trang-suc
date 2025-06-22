@@ -1,8 +1,8 @@
 import { Bookmark, CreditCard, GraduationCap, Home } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, type To } from 'react-router-dom';
 
-import { cn } from '@/lib/utils';
 import { urls } from '@/configs/urls';
+import { cn } from '@/lib/utils';
 
 const Sidebar = () => {
 	// useLocation
@@ -11,10 +11,10 @@ const Sidebar = () => {
 
 	const menus = [
 		{ id: 1, path: urls.home, icon: <Home />, title: 'Dashboard' },
-		{ id: 2, path: urls.products, icon: <Bookmark />, title: 'Products' },
+		{ id: 2, path: urls.products.list, icon: <Bookmark />, title: 'Products' },
 		{
 			id: 3,
-			path: urls.categories,
+			path: urls.categories.list,
 			icon: <GraduationCap />,
 			title: 'Categories',
 		},
@@ -47,7 +47,7 @@ const Sidebar = () => {
 				{menus.map((menuItem) => {
 					return (
 						<Link
-							to={menuItem.path}
+							to={menuItem.path as To}
 							key={menuItem.id}
 							className={cn(
 								'flex items-center gap-3  py-3 px-6',
