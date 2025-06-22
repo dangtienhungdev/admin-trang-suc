@@ -17,5 +17,12 @@ export const urls = {
 		edit: (id: string) => `/customers/edit/${id}`,
 		detail: (id: string) => `/customers/detail/${id}`,
 	},
+	admins: {
+		list: '/admins',
+		create: '/admins/create',
+		edit: (id: string) => `/admins/edit/${id}`,
+		detail: (id: string) => `/admins/detail/${id}`,
+		changePassword: (id: string) => `/admins/change-password/${id}`,
+	},
 	orders: '/orders',
 };

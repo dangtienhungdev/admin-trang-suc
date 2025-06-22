@@ -1,9 +1,14 @@
+import AdminDetailPage from './pages/manager/admins/detail/[adminId]/page';
+import AdminsPage from './pages/manager/admins/page';
 import CategoriesPage from './pages/categories/page';
+import ChangePasswordPage from './pages/manager/admins/change-password/[adminId]/page';
+import CreateAdminPage from './pages/manager/admins/create/page';
 import CreateCategoryPage from './pages/categories/create/page';
 import CreateCustomerPage from './pages/manager/customers/create/page';
 import CreateProductPage from './pages/products/create/page';
 import CustomerDetailPage from './pages/manager/customers/detail/[customerId]/page';
 import CustomersPage from './pages/manager/customers/page';
+import EditAdminPage from './pages/manager/admins/edit/[adminId]/page';
 import EditCategoryPage from './pages/categories/edit/[categoryId]/page';
 import EditCustomerPage from './pages/manager/customers/edit/[customerId]/page';
 import EditProductPage from './pages/products/edit/[productId]/page';
@@ -65,6 +70,26 @@ export const router = createBrowserRouter([
 			{
 				path: 'customers/detail/:customerId',
 				element: <CustomerDetailPage />,
+			},
+			{
+				path: 'admins',
+				element: <AdminsPage />,
+			},
+			{
+				path: 'admins/create',
+				element: <CreateAdminPage />,
+			},
+			{
+				path: 'admins/edit/:adminId',
+				element: <EditAdminPage />,
+			},
+			{
+				path: 'admins/detail/:adminId',
+				element: <AdminDetailPage />,
+			},
+			{
+				path: 'admins/change-password/:adminId',
+				element: <ChangePasswordPage />,
 			},
 		],
 	},
