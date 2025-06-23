@@ -32,7 +32,7 @@ export const productsApi = {
 		id: string,
 		product: Partial<Product>
 	): Promise<BaseResponse<Product>> => {
-		const response = await axiosInstance.put(`/products/${id}`, product);
+		const response = await axiosInstance.patch(`/products/${id}`, product);
 		return response.data;
 	},
 
