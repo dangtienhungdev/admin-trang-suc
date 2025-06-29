@@ -1,11 +1,11 @@
 import axios, {
 	AxiosError,
-	AxiosResponse,
-	InternalAxiosRequestConfig,
+	type AxiosResponse,
+	type InternalAxiosRequestConfig,
 } from 'axios';
 
 const axiosInstance = axios.create({
-	baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+	baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1',
 	timeout: 10000,
 	headers: {
 		'Content-Type': 'application/json',
@@ -15,6 +15,12 @@ const axiosInstance = axios.create({
 // Request interceptor
 axiosInstance.interceptors.request.use(
 	(config: InternalAxiosRequestConfig) => {
+		// Add auth token if available
+		const token = localStorage.getItem('token');
+		if (token) {
+			config.headers.Authorization = `Bearer ${token}`;
+		}
+
 		// Log request for debugging
 		if (import.meta.env.DEV) {
 			console.log('🚀 Request:', config.method?.toUpperCase(), config.url);
@@ -45,8 +51,18 @@ axiosInstance.interceptors.response.use(
 		);
 
 		// Handle common error cases
-		if (error.response?.status === 500) {
+		if (error.response?.status === 401) {
+			// Unauthorized - clear token and redirect to login
+			localStorage.removeItem('token');
+			localStorage.removeItem('user');
+			window.location.href = '/login';
+		} else if (error.response?.status === 403) {
+			// Forbidden - user doesn't have permission
+			console.error('Access denied:', error.response.data);
+		} else if (error.response?.status === 500) {
 			console.error('Server Error:', error.response.data);
+		} else if (error.response?.status === 404) {
+			console.error('Resource not found:', error.config?.url);
 		}
 
 		return Promise.reject(error);

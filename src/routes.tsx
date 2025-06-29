@@ -14,6 +14,7 @@ import EditCustomerPage from './pages/manager/customers/edit/[customerId]/page';
 import EditProductPage from './pages/products/edit/[productId]/page';
 import HomePage from './pages/home/page';
 import LoginPage from './pages/login/page';
+import OrderPage from './pages/orders/page';
 import ProductDetailPage from './pages/products/detail/[productId]/page';
 import ProductsPage from './pages/products/page';
 import RootLayout from './layouts/root-layout';
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
 			{
 				path: 'admins/change-password/:adminId',
 				element: <ChangePasswordPage />,
+			},
+			{
+				path: 'orders',
+				element: <OrderPage />,
 			},
 		],
 	},
