@@ -12,6 +12,12 @@ export const urls = {
 		create: '/categories/create',
 		edit: (id: string) => `/categories/edit/${id}`,
 	},
+	vouchers: {
+		list: '/vouchers',
+		create: '/vouchers/create',
+		edit: (id: string) => `/vouchers/edit/${id}`,
+		detail: (id: string) => `/vouchers/detail/${id}`,
+	},
 	customers: {
 		list: '/customers',
 		create: '/customers/create',

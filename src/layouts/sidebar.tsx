@@ -4,6 +4,7 @@ import {
 	GraduationCap,
 	Home,
 	Shield,
+	Ticket,
 	Users,
 } from 'lucide-react';
 import { Link, useLocation, type To } from 'react-router-dom';
@@ -29,17 +30,23 @@ const Sidebar = () => {
 		},
 		{
 			id: 4,
+			path: '/vouchers',
+			icon: <Ticket />,
+			title: 'Vouchers',
+		},
+		{
+			id: 5,
 			path: urls.customers.list,
 			icon: <Users />,
 			title: 'Customers',
 		},
 		{
-			id: 5,
+			id: 6,
 			path: urls.admins.list,
 			icon: <Shield />,
 			title: 'Admins',
 		},
-		{ id: 6, path: urls.orders, icon: <CreditCard />, title: 'Orders' },
+		{ id: 7, path: urls.orders, icon: <CreditCard />, title: 'Orders' },
 	];
 
 	return (

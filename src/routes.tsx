@@ -6,6 +6,7 @@ import CreateAdminPage from './pages/manager/admins/create/page';
 import CreateCategoryPage from './pages/categories/create/page';
 import CreateCustomerPage from './pages/manager/customers/create/page';
 import CreateProductPage from './pages/products/create/page';
+import CreateVoucherPage from './pages/vouchers/create/page';
 import CustomerDetailPage from './pages/manager/customers/detail/[customerId]/page';
 import CustomersPage from './pages/manager/customers/page';
 import EditAdminPage from './pages/manager/admins/edit/[adminId]/page';
@@ -18,6 +19,7 @@ import OrderPage from './pages/orders/page';
 import ProductDetailPage from './pages/products/detail/[productId]/page';
 import ProductsPage from './pages/products/page';
 import RootLayout from './layouts/root-layout';
+import VouchersPage from './pages/vouchers/page';
 import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
 			{
 				path: 'categories/edit/:categoryId',
 				element: <EditCategoryPage />,
+			},
+			{
+				path: 'vouchers',
+				element: <VouchersPage />,
+			},
+			{
+				path: 'vouchers/create',
+				element: <CreateVoucherPage />,
 			},
 			{
 				path: 'customers',
