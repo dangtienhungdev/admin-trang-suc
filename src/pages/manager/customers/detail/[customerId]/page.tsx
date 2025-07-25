@@ -82,7 +82,7 @@ export default function CustomerDetailPage() {
 					Chi tiết khách hàng
 				</h1>
 				<p className="text-gray-600">
-					Thông tin chi tiết của khách hàng: {customer.fullName}
+					Thông tin chi tiết của khách hàng: {customer?.fullName}
 				</p>
 			</div>
 
@@ -102,7 +102,7 @@ export default function CustomerDetailPage() {
 										Họ và tên
 									</label>
 									<div className="text-lg font-semibold text-gray-900">
-										{customer.fullName}
+										{customer?.fullName}
 									</div>
 								</div>
 
@@ -177,7 +177,7 @@ export default function CustomerDetailPage() {
 									<AlertDialogHeader>
 										<AlertDialogTitle>Xác nhận xóa khách hàng</AlertDialogTitle>
 										<AlertDialogDescription>
-											Bạn có chắc chắn muốn xóa khách hàng "{customer.fullName}
+											Bạn có chắc chắn muốn xóa khách hàng "{customer?.fullName}
 											"? Hành động này không thể hoàn tác và sẽ xóa tất cả dữ
 											liệu liên quan.
 										</AlertDialogDescription>

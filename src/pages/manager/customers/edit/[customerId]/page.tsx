@@ -45,7 +45,7 @@ export default function EditCustomerPage() {
 	useEffect(() => {
 		if (customer) {
 			form.reset({
-				fullName: customer.fullName,
+				fullName: customer?.fullName,
 				phone: customer.phone,
 				address: customer.address,
 			});
@@ -93,7 +93,7 @@ export default function EditCustomerPage() {
 					Chỉnh sửa thông tin khách hàng
 				</h1>
 				<p className="text-gray-600">
-					Cập nhật thông tin cho khách hàng: {customer.fullName}
+					Cập nhật thông tin cho khách hàng: {customer?.fullName}
 				</p>
 			</div>
 

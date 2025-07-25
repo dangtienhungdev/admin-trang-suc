@@ -149,9 +149,9 @@ export const OrdersTable: React.FC<OrdersTableProps> = ({
 								<TableCell className="font-medium">{order.orderCode}</TableCell>
 								<TableCell>
 									<div>
-										<p className="font-medium">{order.customerId.fullName}</p>
+										<p className="font-medium">{order.customerId?.fullName}</p>
 										<p className="text-sm text-gray-500">
-											{order.customerId.email}
+											{order.customerId?.email}
 										</p>
 									</div>
 								</TableCell>

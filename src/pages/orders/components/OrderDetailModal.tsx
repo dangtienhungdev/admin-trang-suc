@@ -67,7 +67,7 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
 								<label className="text-sm font-medium text-gray-500">
 									Họ tên:
 								</label>
-								<p className="font-medium">{order.customerId.fullName}</p>
+								<p className="font-medium">{order.customerId?.fullName}</p>
 							</div>
 							<div>
 								<label className="text-sm font-medium text-gray-500">

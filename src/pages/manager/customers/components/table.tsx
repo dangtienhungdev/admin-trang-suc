@@ -71,7 +71,7 @@ export const TableCustomer = ({ customers }: TableCustomerProps) => {
 							<TableCell className="font-mono text-xs">#{index + 1}</TableCell>
 							<TableCell>
 								<div className="font-medium text-gray-900">
-									{customer.fullName}
+									{customer?.fullName}
 								</div>
 							</TableCell>
 							<TableCell>
@@ -122,7 +122,7 @@ export const TableCustomer = ({ customers }: TableCustomerProps) => {
 												</AlertDialogTitle>
 												<AlertDialogDescription>
 													Bạn có chắc chắn muốn xóa khách hàng "
-													{customer.fullName}"? Hành động này không thể hoàn
+													{customer?.fullName}"? Hành động này không thể hoàn
 													tác.
 												</AlertDialogDescription>
 											</AlertDialogHeader>

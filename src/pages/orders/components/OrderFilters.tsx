@@ -49,7 +49,7 @@ export const OrderFilters: React.FC<OrderFiltersProps> = ({
 		{ value: 'orderDate', label: 'Ngày đặt hàng' },
 		{ value: 'finalAmount', label: 'Tổng tiền' },
 		{ value: 'status', label: 'Trạng thái' },
-		{ value: 'customerId.fullName', label: 'Tên khách hàng' },
+		{ value: 'customerId?.fullName', label: 'Tên khách hàng' },
 	];
 
 	const sortOrderOptions = [
