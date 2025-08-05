@@ -7,20 +7,20 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 
+import { categoriesApi } from '@/apis/categories.api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Loader } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
-import { categoriesApi } from '@/apis/categories.api';
-import { toast } from 'sonner';
 import { useCategory } from '@/hooks/categories/useCategory';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Loader } from 'lucide-react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 const formSchema = z.object({
 	categoryName: z.string().min(1),
@@ -64,7 +64,7 @@ const EditCategoryPage = () => {
 
 	useEffect(() => {
 		if (category) {
-			form.setValue('categoryName', category.categoryName);
+			form.setValue('categoryName', category?.categoryName);
 			form.setValue('description', category.description);
 			form.setValue('isActive', category.isActive);
 		}

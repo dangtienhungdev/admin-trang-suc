@@ -14,20 +14,20 @@ import {
 	SelectValue,
 } from '@/components/ui/select';
 
+import { productsApi } from '@/apis/products.api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Loader } from 'lucide-react';
-import type { Product } from '@/types/product.type';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
-import { productsApi } from '@/apis/products.api';
-import { toast } from 'sonner';
 import { useCategories } from '@/hooks/categories/useCategory';
-import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
-import { z } from 'zod';
+import type { Product } from '@/types/product.type';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Loader } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 const formSchema = z.object({
 	productName: z
@@ -161,7 +161,7 @@ const CreateProductPage = () => {
 												categories.length > 0 &&
 												categories.map((category) => (
 													<SelectItem key={category.id} value={category.id}>
-														{category.categoryName}
+														{category?.categoryName}
 													</SelectItem>
 												))}
 										</SelectContent>

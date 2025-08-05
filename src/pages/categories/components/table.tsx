@@ -9,7 +9,6 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { PencilIcon, TrashIcon } from 'lucide-react';
 import {
 	Table,
 	TableBody,
@@ -18,12 +17,13 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
+import { PencilIcon, TrashIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import type { Category } from '@/types/category.type';
 import { useDeleteCategory } from '@/hooks/categories/useCategory';
-import { useNavigate } from 'react-router-dom';
+import type { Category } from '@/types/category.type';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface TableCategoryProps {
 	categories: Category[];
@@ -67,7 +67,7 @@ export const TableCategory = ({ categories }: TableCategoryProps) => {
 							<TableCell className="font-mono text-xs">#{index + 1}</TableCell>
 							<TableCell>
 								<div className="font-medium text-gray-900">
-									{category.categoryName}
+									{category?.categoryName}
 								</div>
 							</TableCell>
 							<TableCell>
@@ -118,8 +118,8 @@ export const TableCategory = ({ categories }: TableCategoryProps) => {
 												</AlertDialogTitle>
 												<AlertDialogDescription>
 													Bạn có chắc chắn muốn xóa danh mục "
-													{category.categoryName}"? Hành động này không thể hoàn
-													tác.
+													{category?.categoryName}"? Hành động này không thể
+													hoàn tác.
 												</AlertDialogDescription>
 											</AlertDialogHeader>
 											<AlertDialogFooter>

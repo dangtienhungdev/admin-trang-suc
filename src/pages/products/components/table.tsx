@@ -9,7 +9,6 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { EyeIcon, PencilIcon, TrashIcon } from 'lucide-react';
 import {
 	Table,
 	TableBody,
@@ -18,13 +17,14 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
+import { EyeIcon, PencilIcon, TrashIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import type { Product } from '@/types/product.type';
-import { formatPrice } from '@/lib/format-currency';
 import { useDeleteProduct } from '@/hooks/products/useProduct';
-import { useNavigate } from 'react-router-dom';
+import { formatPrice } from '@/lib/format-currency';
+import type { Product } from '@/types/product.type';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface TableProductProps {
 	products: Product[];
@@ -90,7 +90,7 @@ export const TableProduct = ({ products }: TableProductProps) => {
 							</TableCell>
 							<TableCell>
 								<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-									{product.category.categoryName}
+									{product.category?.categoryName}
 								</span>
 							</TableCell>
 							<TableCell className="font-medium">

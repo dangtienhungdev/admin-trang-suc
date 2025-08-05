@@ -20,15 +20,15 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Loader } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { useCategories } from '@/hooks/categories/useCategory';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader } from 'lucide-react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 const formSchema = z.object({
 	productName: z.string().min(1, 'Tên sản phẩm không được để trống'),
@@ -162,7 +162,7 @@ const EditProductPage = () => {
 													categories.length > 0 &&
 													categories.map((category) => (
 														<SelectItem key={category.id} value={category.id}>
-															{category.categoryName}
+															{category?.categoryName}
 														</SelectItem>
 													))}
 											</SelectContent>
